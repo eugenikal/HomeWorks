@@ -64,9 +64,9 @@ public class Homework_2 {
         double SumLeft=0; double GrandSum=0;
 
         for(int i=0; i<array.length;i++) {
-                GrandSum+=array[i];
-        }                                                                   //calculate all array values sum -> GrandSum
-        for(int i=1; (i<array.length) && (2*SumLeft!=GrandSum);i++) {
+                GrandSum+=array[i];                                         //calculate all array values sum -> GrandSum
+        }
+        for(int i=1; (i<array.length) && (2*SumLeft<=GrandSum);i++) {
             SumLeft=0;
             for (int sl=0; sl<i; sl++) {
                 SumLeft += array[sl];
