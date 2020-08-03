@@ -9,11 +9,11 @@ public class Advanced_TicTacToe {
     private static final char DOT_HUMAN = 'X';
     private static final char DOT_AI = 'O';
     private static final char DOT_EMPTY = '.';
-    private static final int WIN_RAW = 3;
+    private static final int WIN_RAW = 4;
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final Random RANDOM = new Random();
-    private static int fieldSizeY = 3;
-    private static int fieldSizeX = 3;
+    private static int fieldSizeY = 5;
+    private static int fieldSizeX = 5;
     private static char[][] field;
     private static String dangerDirection;
     private static int dangerX = 3;
@@ -99,13 +99,25 @@ public class Advanced_TicTacToe {
                 if (isValidCell(dangerX, dangerY)) field[dangerY][dangerX] = DOT_AI;
                 //System.out.println("AI in can win");
                 isAI_made_move = true;
-            }
-                // check if potential human move lead to win in 1 turn and block
-                if (!isAI_made_move && checkWin_common(DOT_HUMAN, (WIN_RAW - 1))) {
-                    if (isValidCell(dangerX, dangerY)) field[dangerY][dangerX] = DOT_AI;
+            }else //if potential human move lead to win in 1 turn and block
+            if (!isAI_made_move && checkWin_common(DOT_HUMAN, (WIN_RAW - 1))) {
+                if (isValidCell(dangerX, dangerY)) {
+                    field[dangerY][dangerX] = DOT_AI;
+                    isAI_made_move = true;
+                }
+                //System.out.println(dangerX + " <-x -- y ->  " + dangerY);
+                //System.out.println("H in 1 turns");
+
+            } else
+                // check if potential human move lead to win in 2 turn and block
+                if (!isAI_made_move && checkWin_common(DOT_HUMAN, (WIN_RAW - 2))) {
+                    if (isValidCell(dangerX, dangerY)) {
+                        field[dangerY][dangerX] = DOT_AI;
+                        isAI_made_move = true;
+                    }
                     //System.out.println(dangerX + " <-x -- y ->  " + dangerY);
                     //System.out.println("H in 1 turns");
-                    isAI_made_move = true;
+
                 } else
                     if(!isAI_made_move && dangerX<0){
                      do {
